@@ -8,19 +8,18 @@
 </head>
 <body>
   <h3>Diagramma Temperatura-Tempo per imparare a leggere i valori dal grafico interattivo</h3>
-  <h4> </h4>
-
-
+  <h4 style="color: red;">curva 100% di A e 0% di B</h4>
+  <h4 style="color: blue;">curva 80% di A e 20% di B </h4>
   <div id="grafico" style="width:100%;max-width:900px;height:600px;"></div>
 
   <script>
     // Composizione in % (0 = componente A puro, 100 = componente B puro) - trasformato in tempo
-    var tempo1 = [0, 5, 10, 15, 20, 30, 44, 46, 50, 60]; // 
-    var tempo2 = [0, 5, 10, 15, 20, 30, 40, 50, 55, 60];// 
+    var tempo1 = [0, 8, 10, 20, 30, 35, 40, 44, 50, 60]; // 
+    var tempo2 = [0, 4, 7, 10, 20, 30, 35, 40, 50, 56];// 
 
     // Curve liquidus
-    var curva1 = [1400, 1200, 1000, 800, 760, 700, 660, 600, 460, 340]; // Curva 20% A 80% B
-    var curva2 = [1400, 1200, 1000, 800, 600, 600, 600, 600, 400, 350]; // curva 80% di A e 20% di B
+    var curva1 = [1400, 1200, 1200, 1200, 1200, 1200, 1000, 800, 600, 400]; // curva 100% di A e 0% di B 
+    var curva2 = [1400, 1200, 1150, 1100, 1050, 1000, 800, 670, 500, 400]; // curva 80% di A e 20% di B
 
     
 
@@ -29,7 +28,7 @@
       x: tempo1,
       y: curva1,
       mode: 'lines+markers',
-      name: 'Curva 20% A 80% B',
+      name: '100% A & 0% B',
       line: {color: 'red', width: 3}
     };
 
@@ -37,12 +36,12 @@
       x: tempo2,
       y: curva2,
       mode: 'lines+markers',
-      name: 'Curva 0% A 100% B',
+      name: '80% A & 20% B',
       line: {color: 'blue', width: 3}
     };
 
     var traceFineTrasformazione = {
-      x: [0, 120], // da 0% a 100% per linea orizzontale
+      x: [0, 60], // da 0% a 100% per linea orizzontale
       y: [1000, 1000],
       mode: 'lines',
       name: 'T Fine trasformazione',
@@ -50,8 +49,16 @@
     };
 
  var traceInizioTrasformazione = {
-      x: [0, 120], // da 0% a 100% per linea orizzontale
-      y: [1270, 1270],
+      x: [0, 60], // da 0% a 100% per linea orizzontale
+      y: [1200, 1200],
+      mode: 'lines',
+      name: 'T Inizio trasformazione',
+      line: {color: 'green', width: 3, dash: 'dash'}
+    };
+
+var traceInizioTrasformazione2 = {
+      x: [0, 60], // da 0% a 100% per linea orizzontale
+      y: [1150, 1150],
       mode: 'lines',
       name: 'T Inizio trasformazione',
       line: {color: 'green', width: 3, dash: 'dash'}
@@ -63,7 +70,7 @@
       yaxis: {title: 'Temperatura del Metallo Fuso (°C)'}
     };
 
-    Plotly.newPlot('grafico', [traceSinistra, traceDestra, traceInizioTrasformazione, traceFineTrasformazione], layout);
+    Plotly.newPlot('grafico', [traceSinistra, traceDestra,traceInizioTrasformazione2, traceInizioTrasformazione, traceFineTrasformazione], layout);
   </script>
 </body>
 </html>
